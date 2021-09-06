@@ -1,4 +1,5 @@
 import Data from './Component/Data';
+import Filter from './Component/Filter';
 import {BrowserRouter,Switch,Route,Link} from "react-router-dom"
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
           </Route>
           <Switch>
               <Route path="/" exact component={Data}/>
-          
-          </Switch>
+              <Route path="/filter" exact component={Filter}/>
+            </Switch>
       </BrowserRouter>
       
 </div>

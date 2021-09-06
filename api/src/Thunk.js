@@ -1,5 +1,5 @@
 import axios from "axios"
-import { fetchData } from "./Redux/Actions/allActions"
+import { fetchData,filterData } from "./Redux/Actions/allActions"
 
 const request=axios.create({
     baseURL:"http://shibe.online/api",
@@ -16,5 +16,30 @@ export const requestFetchData=(state)=>{
         }
 
 
+    }
+}
+export const requestFilteredData=(state)=>{
+    return async(dispatch)=>{
+        try {
+            const {limit,type}=state
+            console.log(limit,type)
+            const filteredData=await request.get(`/${type}?count=${limit}`)
+            console.log(filteredData.data)
+            dispatch(filterData(filteredData.data))
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const requestSetFilterData=(state)=>{
+    return async(dispatch)=>{
+        try {
+            console.log(state)
+        } catch (error) {
+            
+        }
     }
 }

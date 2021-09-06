@@ -1,26 +1,30 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { useHistory } from 'react-router'
 import { useDispatch,useSelector } from 'react-redux'
 import { requestFilteredData } from '../Thunk'
 import { setFilterData } from '../Redux/Actions/allActions'
 const Filter = () => {
     const prevFilterData= useSelector(state => state.reducer.setFilterData)
+    const filterData= useSelector(state => state.reducer.filterData)
+    console.log(filterData)
     const {limit,type}=prevFilterData
     const [filter,setFilter]=useState({limit:limit,type:type})
+    
     const history=useHistory()
     const dispatch = useDispatch()
     const handleInputData=(e)=>{
         let {name,value}=e.target;
         setFilter({...filter,[name]:value})
-        dispatch(setFilterData(filter))
+        
     }
     const handleSubmit=(e)=>{
         e.preventDefault()
-        console.log(filter)
+        dispatch(setFilterData(filter))
         dispatch(requestFilteredData(filter))
         history.push("/")
         }
          
+    
     return (
         <div>
             <center>
@@ -32,6 +36,7 @@ const Filter = () => {
                 <input type="submit" value="Apply Filter" />
             </form>
             </center>
+
                <hr/>
             
         </div>

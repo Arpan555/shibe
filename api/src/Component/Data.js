@@ -8,9 +8,8 @@ const Data = () => {
     const history=useHistory()
     const dispatch = useDispatch()
     useEffect(() => {
-       dispatch(requestFetchData(imageData))
-        
-    }, [dispatch])
+        dispatch(requestFetchData(imageData))
+    }, [dispatch,requestFetchData])
     
     const imageDataFields=imageData.length > 0 ? Object.keys(imageData[0]) : [];
     
@@ -21,19 +20,15 @@ const Data = () => {
         
         <h3>Data</h3>
            <h1>
-
-                {!imageData[0] ? (
-                    "No ImageData Found"):
-                    (
-                    <table>
-                    <tbody>
-                      
-                        {imageData.map((log) => (
-                       <img className="img-size" src={log} title={log} />
+           {Object.keys(imageData).length === 0 ? (<div>...Loading</div>) :
+            (
+    
+                       <div> {imageData.map((img) => (
+                       <img className="img-size" src={img} title={img} />
                         ))}
-                    </tbody>
-                    </table>
-                )}
+                    </div>
+        
+            )}
                 </h1>
            <br/>
            </center> 

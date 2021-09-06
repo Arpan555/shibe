@@ -14,7 +14,7 @@ export default function reducer(state=initialState,action){
         case FILTER_DATA:
             return{
                 ...state,
-                fetchedData: action.payload
+                fetchedData:action.payload
             }
         case SET_FILTER_DATA:
             return{
